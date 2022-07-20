@@ -20,7 +20,7 @@
 				<i class="fas fa-chevron-left"></i>
 			</button>
 			<button type="button" class="btn btn-outline-success">
-				<i class="fas fa-chevron-right"></i>
+				<i class="fas fa-chevron-right"></i>	
 			</button>
 		</div>
 	</div>

@@ -47,7 +47,7 @@ public class AdUserController extends HttpServlet {
 	int numberOfUsers = userDAO.countUser();
 	int numberOfPage = (int) Math.ceil(numberOfUsers / 10) + 1;
 
-	request.setAttribute("currentPage", Integer.parseInt(page));
+	request.setAttribute(" ", Integer.parseInt(page));
 	request.setAttribute("users", users);
 	request.setAttribute("numberOfPage", numberOfPage);
 
