@@ -9,12 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import web.java.dao.BrandDAO;
-import web.java.dao.CategoryDAO;
-import web.java.dao.CollectionDAO;
-import web.java.dao.EventDAO;
-import web.java.dao.UserDAO;
-import web.java.model.User;
+import web.java.dao.EmployeeDAO;
+import web.java.model.Employee;
+
 
 /**
  * Servlet implementation class LoginServlet
@@ -39,10 +36,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		request.setAttribute("events", new EventDAO().getAllEvent());
-		request.setAttribute("brands", new BrandDAO().getAllBrand());
-		request.setAttribute("categories", new CategoryDAO().getAllCategory());
-		request.setAttribute("collections", new CollectionDAO().getAllCollection());
+		request.setAttribute("users", new EmployeeDAO().getAllUser());
 		request.getRequestDispatcher("Page/web/login.jsp").forward(request, response);
 	}
 
@@ -57,15 +51,15 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String encodePass = new UserDAO().getEncodedString(password);
+		String encodePass = new EmployeeDAO().getEncodedString(password);
 		if (username.isEmpty() == true || password.isEmpty() == true) {
 			request.setAttribute("mess", "Username and password must not empty");
 			request.getRequestDispatcher("Page/web/login.jsp").forward(request, response);
 		} else {
-			if (new UserDAO().login(username, encodePass) == true) {
+			if (new EmployeeDAO().login(username, encodePass) == true) {
 				Cookie userId = new Cookie("loginId",
-						Integer.toString(new UserDAO().getUserByUsername(username).getId()));
-				Cookie userName = new Cookie("loginName", new UserDAO().getUserByUsername(username).getUsername());
+						Integer.toString(new EmployeeDAO().getUserByUsername(username).getId()));
+				Cookie userName = new Cookie("loginName", new EmployeeDAO().getUserByUsername(username).getUsername());
 				userId.setMaxAge(60 * 60 * 24);
 				userName.setMaxAge(60 * 60 * 24);
 				response.addCookie(userId);
@@ -73,14 +67,10 @@ public class LoginServlet extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("loginSession",
-						new UserDAO().getUserById(Integer.toString(new UserDAO().getUserByUsername(username).getId())));
-				System.out.println(((User) session.getAttribute("loginSession")).getFullname());
+						new EmployeeDAO().getUserById(Integer.toString(new EmployeeDAO().getUserByUsername(username).getId())));
+				System.out.println(((Employee) session.getAttribute("loginSession")).getName());
 				response.sendRedirect("home");
 			} else {
-				request.setAttribute("events", new EventDAO().getAllEvent());
-				request.setAttribute("brands", new BrandDAO().getAllBrand());
-				request.setAttribute("categories", new CategoryDAO().getAllCategory());
-				request.setAttribute("collections", new CollectionDAO().getAllCollection());
 				request.setAttribute("mess", "Wrong username and password, please check again");
 				request.getRequestDispatcher("Page/web/login.jsp").forward(request, response);
 			}

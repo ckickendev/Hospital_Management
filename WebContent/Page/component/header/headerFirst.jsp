@@ -34,20 +34,13 @@
 					<php:if test="${userLogin != null }">
 						<div class="nav-item dropdown d-none d-lg-block user-dropdown"><a
 							class="nav-link" id="UserDropdown" href="#"
-							data-bs-toggle="dropdown" aria-expanded="false"> <img
-								class="img-xs rounded-circle"
-								style="width: 30px; height: 30px; border: 1px solid red;"
-								src="${userLogin.getAvatar() }" alt="Profile image">
+							data-bs-toggle="dropdown" aria-expanded="false">
 						</a>
 							<div
 								class="dropdown-menu dropdown-menu-right navbar-dropdown m-4 p-4 dropmenu_config_color"
 								aria-labelledby="UserDropdown">
 								<div class="dropdown-header text-center">
-									<img class="img-md rounded-circle"
-										src="${userLogin.getAvatar() }"
-										style="width: 60px; height: 60px; border: 1px solid red;"
-										alt="Profile image">
-									<p class="mb-1 mt-3 font-weight-semibold">${userLogin.getFullname() }</p>
+									<p class="mb-1 mt-3 font-weight-semibold">${userLogin.getName() }</p>
 									<p class="fw-light text-muted mb-0">${userLogin.getEmail() }</p>
 								</div>
 								<php:if test="${userLogin.getRole() == 1 }">

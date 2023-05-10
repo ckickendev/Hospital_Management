@@ -11,9 +11,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import web.java.dao.EmployeeDAO;
+import web.java.model.Employee;
 
-import web.java.dao.UserDAO;
-import web.java.model.User;
 
 /**
  * Servlet Filter implementation class CheckCookie
@@ -53,7 +53,7 @@ public class CheckCookie implements Filter {
 	    if (cookies != null) {
 		for (Cookie ck : cookies) {
 		    if (ck.getName().equals("loginId")) {
-			User user = new UserDAO().getUserById(ck.getValue());
+			Employee user = new EmployeeDAO().getUserById(ck.getValue());
 			request2.setAttribute("userLogin", user);
 			request2.setAttribute("userLoginId", ck.getValue());
 		    }

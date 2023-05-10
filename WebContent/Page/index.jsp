@@ -38,7 +38,7 @@
 <link type="text/css" rel="stylesheet"
 	href="Page/css/nouislider.min.css" />
 <link rel="stylesheet" href="Page/css/font-awesome.min.css">
-<title>Flap Shop</title>
+<title>Hospital Management</title>
 <style type="text/css">
 .flickity-slider {
 	
@@ -52,16 +52,6 @@
 	<!-- PRODUCT -->
 	<div class="product product-wrapper-main">
 		<div class="container">
-			<%@include file="component/main/flashDeal.jsp"%>
-			<%@include file="component/main/allEvent.jsp"%>
-			<%@include file="component/main/deal1k.jsp"%>
-			<div class="d-flex justify-content-around mt-5 mb-5 row">
-				<php:forEach items="${categories }" var="cate" begin="1" end="9">
-					<a class="btn col-md-1" style="background-color: #990000; color: white; margin-left: 4px; margin-right: 4px; margin-top: 10px"
-						href="category?id=${cate.getId() } ">${cate.getName() }</a>
-				</php:forEach>
-			</div>
-			<%@include file="component/main/saleProduct.jsp"%>
 			
 			<!-- Event id = 8 -->
 			<div class="text-center d-flex justify-content-center"
@@ -69,9 +59,7 @@
 				<button class="btn btn-dark">Xem thêm</button>
 			</div>
 			<%@include file="component/main/banner1.jsp"%>
-			<%@include file="component/main/normMakeup.jsp"%>
 			<%@include file="component/main/banner2.jsp"%>
-			<%@include file="component/main/normSkincare.jsp"%>
 		</div>
 	</div>
 	<!-- FOOTER -->

@@ -7,12 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.java.dao.BrandDAO;
-import web.java.dao.CategoryDAO;
-import web.java.dao.CollectionDAO;
-import web.java.dao.EventDAO;
-import web.java.dao.ProductDAO;
-
 /**
  * Servlet implementation class HomeServlet
  */
@@ -37,20 +31,12 @@ public class HomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		String start = request.getParameter("start") == null ? "0" : request.getParameter("start");
+//		String start = request.getParameter("start") == null ? "0" : request.getParameter("start");
+//
+//
+//		System.out.println(start);
 
-		request.setAttribute("saleMakeups", new CategoryDAO().getMakeupCate());
-		System.out.println(start);
-		request.setAttribute("saleProducts", new EventDAO().getProductInEvent(start));
 //		System.out.println("List product" + new EventDAO().getProductInEvent(start));
-		request.setAttribute("events", new EventDAO().getAllEvent());
-		request.setAttribute("brands", new BrandDAO().getAllBrand());
-		request.setAttribute("categories", new CategoryDAO().getAllCategory());
-		request.setAttribute("collections", new CollectionDAO().getAllCollection());
-		request.setAttribute("flashdeal1s", new EventDAO().getProductInEventRan("2"));
-		request.setAttribute("flashdeal2s", new EventDAO().getProductInEventRan("1"));
-		request.setAttribute("SkincareProducts", new ProductDAO().getProductSkinCare());
-		request.setAttribute("MakeupProducts", new ProductDAO().getProductMakeUp());
 
 		request.getRequestDispatcher("/Page/index.jsp").forward(request, response);
 	}

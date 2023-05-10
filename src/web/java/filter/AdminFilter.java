@@ -12,8 +12,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.java.dao.UserDAO;
-import web.java.model.User;
+import web.java.dao.EmployeeDAO;
+import web.java.model.Employee;
 
 /**
  * Servlet Filter implementation class AdminFilter
@@ -49,11 +49,11 @@ public class AdminFilter implements Filter {
 	HttpServletRequest request1 = (HttpServletRequest) request;
 	Cookie[] cookies = request1.getCookies();
 
-	User user = new User();
+	Employee user = new Employee();
 	if (cookies != null) {
 	    for (Cookie ck : cookies) {
 		if ("loginId".equals(ck.getName())) {
-		    user = new UserDAO().getUserById(ck.getValue());
+		    user = new EmployeeDAO().getUserById(ck.getValue());
 		    request.setAttribute("userLogin", user);
 		}
 	    }

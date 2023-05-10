@@ -22,5 +22,19 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/mac/Documents/workspace/HospitalManagement/dependency_flap/activation-jaf1.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/mac/Documents/workspace/HospitalManagement/dependency_flap/javax.mail.jar"/>
+	<classpathentry kind="lib" path="/Users/mac/Documents/workspace/HospitalManagement/dependency_flap/javax.servlet.jsp.jstl-1.2.4.jar"/>
+	<classpathentry kind="lib" path="/Users/mac/Documents/workspace/HospitalManagement/dependency_flap/sqljdbc42.jar"/>
+	<classpathentry kind="lib" path="/Users/mac/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" sourcepath="/Users/mac/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+			<attribute name="maven.groupId" value="javax.servlet"/>
+			<attribute name="maven.artifactId" value="javax.servlet-api"/>
+			<attribute name="maven.version" value="3.1.0"/>
+			<attribute name="maven.scope" value="provided"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

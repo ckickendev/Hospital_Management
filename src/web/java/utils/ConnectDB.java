@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConnectDB {
 	public Connection getDBConnection() {
-		String connectUrl = "jdbc:mysql://localhost:3306/laptopweb?useUnicode=true&characterEncoding=UTF-8";
+		String connectUrl = "jdbc:mysql://localhost:3306/HOSPITAl_MANAGEMENT?useUnicode=true&characterEncoding=UTF-8";
 		String username = "root";
-		String password = "gintaka";
+		String password = "Do03011995";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(connectUrl, username, password);
@@ -20,9 +20,9 @@ public class ConnectDB {
 		return null;
 	}
 	public static void main(String[] args) throws SQLException {
-		String connectUrl = "jdbc:mysql://localhost:3306/laptopweb";
+		String connectUrl = "jdbc:mysql://localhost:3306/HOSPITAl_MANAGEMENT";
 		String username = "root";
-		String password = "gintaka";
+		String password = "Do03011995";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(connectUrl, username, password);

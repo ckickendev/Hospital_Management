@@ -1,7 +1,6 @@
 package web.java.AdminController.UserController;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,77 +8,84 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import web.java.dao.UserDAO;
-import web.java.model.User;
+import web.java.dao.EmployeeDAO;
+import web.java.dao.PositionDAO;
+import web.java.model.Employee;
 
 /**
  * Servlet implementation class EditUserAdmin
  */
-@WebServlet("/admin/editUser")
+@WebServlet("/employee/editUser")
 public class EditUserAdmin extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EditUserAdmin() {
-	super();
-	// TODO Auto-generated constructor stub
-    }
-
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	// TODO Auto-generated method stub
-	response.setContentType("text/html;charset=UTF-8");
-	request.setCharacterEncoding("utf-8");
-	
-	String id = request.getParameter("id");
-	UserDAO userDAO = new UserDAO();
-	User userEdit = userDAO.getUserById(id);
-
-	request.setAttribute("userEdit", userEdit);
-	request.getRequestDispatcher("../Admin/template/management/EditUserAdmin.jsp").forward(request, response);
-    }
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	// TODO Auto-generated method stub
-	response.setContentType("text/html;charset=UTF-8");
-	request.setCharacterEncoding("utf-8");
-	
-	UserDAO userDAO = new UserDAO();
-	String id = request.getParameter("id");
-	String avatar = request.getParameter("avatar");
-	String password = request.getParameter("password");
-	String fullname = request.getParameter("fullname");
-	String isAdmin = request.getParameter("isAdmin");
-
-	userDAO.updateUserById(id, avatar, password, fullname, isAdmin);
-
-	String page = "";
-	if (request.getParameter("page") == null) {
-	    page = "1";
-	} else {
-	    page = request.getParameter("page");
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public EditUserAdmin() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	List<User> users = userDAO.getAllUserInPage(Integer.parseInt(page));
-	int numberOfUsers = userDAO.countUser();
-	int numberOfPage = (int) Math.ceil(numberOfUsers / 10) + 1;
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
 
-	request.setAttribute("currentPage", Integer.parseInt(page));
-	request.setAttribute("users", users);
-	request.setAttribute("numberOfPage", numberOfPage);
+		String id = request.getParameter("id");
+		EmployeeDAO userDAO = new EmployeeDAO();
+		Employee userEdit = userDAO.getUserById(id);
 
-	request.getRequestDispatcher("../Admin/template/management/UserManagement.jsp").forward(request, response);
-    }
+		request.setAttribute("user", userEdit);
+		request.setAttribute("pos", new PositionDAO().getAllPosition());
+		request.getRequestDispatcher("../Admin/UI/Employee/EmployeeEdit.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		System.out.println("request.getParameter(\"role\")" + request.getParameter("role"));
+		int roleString = request.getParameter("role").equals("on") ? 1 : 0;
+		System.out.println("request.getParameter(\"id\")" + request.getParameter("id"));
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		String fullname = request.getParameter("name");
+		System.out.println("rInteger.parseInt(request.getParameter(\"position\")" + request.getParameter("position"));
+		Employee employee = new Employee(id, fullname, Integer.parseInt(request.getParameter("position")),
+				request.getParameter("department"), request.getParameter("email"), request.getParameter("phone_number"),
+				request.getParameter("username"), "", roleString);
+
+		System.out.println("emp" + employee);
+
+		EmployeeDAO userDAO = new EmployeeDAO();
+		userDAO.updateUserById(employee);
+
+//		String page = "";
+//		if (request.getParameter("page") == null) {
+//			page = "1";
+//		} else {
+//			page = request.getParameter("page");
+//		}
+//		List<Employee> users = userDAO.getAllUserInPage(Integer.parseInt(page));
+//		int numberOfUsers = userDAO.countUser();
+//		int numberOfPage = (int) Math.ceil(numberOfUsers / 10) + 1;
+//
+//		request.setAttribute("currentPage", Integer.parseInt(page));
+//		request.setAttribute("users", users);
+//		request.setAttribute("numberOfPage", numberOfPage);
+
+//		request.getRequestDispatcher("../Admin/template/management/UserManagement.jsp").forward(request, response);
+		response.sendRedirect("http://localhost:8080/Hospital_Management/employee");
+	}
 
 }
