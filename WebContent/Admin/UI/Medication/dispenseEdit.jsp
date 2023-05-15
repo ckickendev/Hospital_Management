@@ -27,6 +27,7 @@
 					<a href="../dismedication" class="btn btn-warning">Trở về</a>
 					<p class="text text-danger">Tên bệnh nhân:
 						${dispenses.getPatient().getName() }</p>
+					<h2 class="text-danger text-center">Sửa đơn thuốc</h2>
 					<table class="table table-striped table-bordered text-center">
 						<tr>
 							<th>Tên thuốc</th>

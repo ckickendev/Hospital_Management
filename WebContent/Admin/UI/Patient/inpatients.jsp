@@ -24,6 +24,8 @@
 			<div id="content">
 				<%@include file="../../common/headerWrapper.jsp"%>
 				<div>
+					<h2 class="text-danger text-center">Danh sách bệnh nhân nội
+						trú</h2>
 					<table class="table table-striped table-bordered text-center">
 						<tr>
 							<th>ID</th>
@@ -53,7 +55,8 @@
 							</tr>
 						</php:forEach>
 					</table>
-					<a href="inpatientAdd" class="btn btn-danger">Thêm bệnh nhân nội trú</a>
+					<a href="inpatientAdd" class="btn btn-danger">Thêm bệnh nhân
+						nội trú</a>
 				</div>
 
 			</div>

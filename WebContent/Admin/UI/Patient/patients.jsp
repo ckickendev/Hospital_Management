@@ -24,6 +24,7 @@
 			<div id="content">
 				<%@include file="../../common/headerWrapper.jsp"%>
 				<div>
+					<h2 class="text-danger text-center">Tất cả bệnh nhân</h2>
 					<table class="table table-striped table-bordered text-center">
 						<tr>
 							<th>ID</th>

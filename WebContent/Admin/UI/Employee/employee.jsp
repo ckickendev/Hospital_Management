@@ -24,6 +24,7 @@
 			<div id="content">
 				<%@include file="../../common/headerWrapper.jsp"%>
 				<div>
+					<h2 class="text-danger text-center">Danh sách nhân viên</h2>
 					<table class="table table-striped table-bordered text-center">
 						<tr>
 							<th>ID</th>
@@ -62,7 +63,7 @@
 							</tr>
 						</php:forEach>
 					</table>
-					<a href="employeeAdd" class="btn btn-danger" >Thêm nhân viên</a>
+					<a href="employeeAdd" class="btn btn-danger">Thêm nhân viên</a>
 				</div>
 
 			</div>
