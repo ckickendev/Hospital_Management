@@ -56,7 +56,7 @@ public class DispensedMedicationDAO {
 
 		return dis;
 	}
-	
+
 	public Dispense findDispense(String id) {
 		Dispense pos = null;
 		String query = "select * from dispense where id = ?";
@@ -75,7 +75,26 @@ public class DispensedMedicationDAO {
 		}
 		return pos;
 	}
-	
+
+	public Dispense findDispenseByPatientId(String id) {
+		Dispense pos = null;
+		String query = "select * from dispense where patient_id = ?";
+		try {
+			conn = new ConnectDB().getDBConnection();
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				pos = new Dispense(rs.getString(1), rs.getInt(2), findDispensedMedicationByDispense(rs.getString(1)));
+			}
+			rs.close();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pos;
+	}
+
 //	public Dispense findDispenseByPatient(String id) {
 //		Dispense pos = null;
 //		String query = "select * from dispense where id = ?";
@@ -160,9 +179,6 @@ public class DispensedMedicationDAO {
 				dispenseMedications.add(new DispenseMedication(rs1.getInt(1), rs1.getInt(2), rs1.getString(3),
 						rs1.getInt(4), rs1.getString(5), rs1.getString(6)));
 			}
-			ps1.close();
-			rs1.close();
-			con1.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

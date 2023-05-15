@@ -14,61 +14,61 @@ import javax.servlet.http.HttpServletRequest;
 import web.java.dao.EmployeeDAO;
 import web.java.model.Employee;
 
-
 /**
  * Servlet Filter implementation class CheckCookie
  */
-@WebFilter("/*")
+@WebFilter({ "/patient/edit", "/inpatient/edit", "/tests/edit", "/feeTotal/edit", "/examination/edit",
+		"/dismedication/edit", "/bloodbank/edit", "/medication/edit", "/service/edit", "/employee/edit" })
 public class CheckCookie implements Filter {
 
-    /**
-     * Default constructor.
-     */
-    public CheckCookie() {
-	// TODO Auto-generated constructor stub
-    }
-
-    /**
-     * @see Filter#destroy()
-     */
-    public void destroy() {
-	// TODO Auto-generated method stub
-    }
-
-    /**
-     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-     */
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-	    throws IOException, ServletException {
-	String path = ((HttpServletRequest) request).getRequestURI();
-	if(path.startsWith("/signout")){
-	    chain.doFilter(request, response); // Just continue chain.
+	/**
+	 * Default constructor.
+	 */
+	public CheckCookie() {
+		// TODO Auto-generated constructor stub
 	}
-	if (path.startsWith("/admin/")) {
-	    chain.doFilter(request, response); // Just continue chain.
-	} else {
-	    HttpServletRequest request2 = (HttpServletRequest) request;
-	    Cookie[] cookies = request2.getCookies();
 
-	    if (cookies != null) {
-		for (Cookie ck : cookies) {
-		    if (ck.getName().equals("loginId")) {
-			Employee user = new EmployeeDAO().getUserById(ck.getValue());
-			request2.setAttribute("userLogin", user);
-			request2.setAttribute("userLoginId", ck.getValue());
-		    }
+	/**
+	 * @see Filter#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 */
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		String path = ((HttpServletRequest) request).getRequestURI();
+		if (path.startsWith("/signout")) {
+			chain.doFilter(request, response); // Just continue chain.
 		}
-	    }
-	    chain.doFilter(request, response);
+		if (path.startsWith("/admin/")) {
+			chain.doFilter(request, response); // Just continue chain.
+		} else {
+			HttpServletRequest request2 = (HttpServletRequest) request;
+			Cookie[] cookies = request2.getCookies();
+
+			if (cookies != null) {
+				for (Cookie ck : cookies) {
+					if (ck.getName().equals("loginId")) {
+						Employee user = new EmployeeDAO().getUserById(ck.getValue());
+						request2.setAttribute("userLogin", user);
+						request2.setAttribute("userLoginId", ck.getValue());
+					}
+				}
+			}
+			chain.doFilter(request, response);
+		}
+
 	}
 
-    }
-
-    /**
-     * @see Filter#init(FilterConfig)
-     */
-    public void init(FilterConfig fConfig) throws ServletException {
-	// TODO Auto-generated method stub
-    }
+	/**
+	 * @see Filter#init(FilterConfig)
+	 */
+	public void init(FilterConfig fConfig) throws ServletException {
+		// TODO Auto-generated method stub
+	}
 
 }

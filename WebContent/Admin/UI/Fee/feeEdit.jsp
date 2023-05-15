@@ -21,10 +21,13 @@
 	<div id="wrapper">
 		<%@include file="../../common/sidebar.jsp"%>
 		<div id="content-wrapper">
+		
 			<%@include file="../../common/headerWrapper.jsp"%>
+			<a href="http://localhost:8080/Hospital_Management/feeTotal" class="btn btn-danger col-md-3">Trở về</a>
 			<div>
 				<form action="edit" method="post">
 					<h2 class="text-danger text-center">Cập nhật tiền viện phí</h2>
+					
 					<div class="form-group">
 						<label for="" style="font-size: 18px">Tên bệnh nhân</label> <select
 							disabled required name="patient_id">
@@ -41,12 +44,12 @@
 
 					<div class="form-group">
 						<label for="" style="font-size: 18px">Tiền nội trú</label> <input
-							required name="date" value="${feeTotal.getPriceInpatient() }"
+							required name="price" value="${feeTotal.getPriceInpatient() }"
 							type="text" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="" style="font-size: 18px">Ngày cập nhật</label> <input
-							required name="note" value="${feeTotal.getDate() }" type="date"
+							required name="date" value="${feeTotal.getDate() }" type="date"
 							class="form-control">
 					</div>
 					<div class="form-group">
@@ -63,8 +66,9 @@
 
 						</select>
 					</div>
-					<input type="hidden" name="id" value="${test.getId() }">
-					<button class="btn btn-danger">Sửa</button>
+					<input type="hidden" name="id"
+						value="${feeTotal.getPatient().getId() }">
+					<button class="btn btn-danger col-md-3 align-center">Sửa</button>
 				</form>
 			</div>
 		</div>

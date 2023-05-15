@@ -40,8 +40,26 @@ public class TestResultDAO {
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				pos = new TestResult(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
-						rs.getString(5), rs.getString(6));
+				pos = new TestResult(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+						rs.getString(6));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pos;
+	}
+
+	public List<TestResult> findTestResultByPatientId(String id) {
+		List<TestResult> pos = new ArrayList<>();
+		String query = "select * from TEST_RESULT where patient_id = ?";
+		try {
+			conn = new ConnectDB().getDBConnection();
+			ps = conn.prepareStatement(query);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				pos.add(new TestResult(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+						rs.getString(6)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

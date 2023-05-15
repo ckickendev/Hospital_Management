@@ -27,7 +27,7 @@
 				<table class="table table-striped table-bordered text-center">
 					<tr>
 						<th>ID bệnh nhân</th>
-						<th>Tên người xét nghiệm</th>
+						<th>Tên bệnh nhân</th>
 						<th>Tiền nội trú (tổng)</th>
 						<th>Ngày tính</th>
 						<th>Tổng số tiền</th>
