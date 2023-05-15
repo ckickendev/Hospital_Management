@@ -56,7 +56,12 @@ public class EditUserAdmin extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		System.out.println("request.getParameter(\"role\")" + request.getParameter("role"));
-		int roleString = request.getParameter("role").equals("on") ? 1 : 0;
+		int roleString = 1;
+		System.out.println(request.getParameter("role"));
+		if(request.getParameter("role") == null){
+			roleString = 0;
+		}
+//		int roleString = request.getParameter("role").equals("on") ? 1 : 0;
 		System.out.println("request.getParameter(\"id\")" + request.getParameter("id"));
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		String fullname = request.getParameter("name");

@@ -1,9 +1,2 @@
 eclipse.preferences.version=1
-encoding//WebContent/Admin/template/component/footer.jsp=UTF-8
-encoding//WebContent/Admin/template/component/leftbar.jsp=UTF-8
-encoding//WebContent/Admin/template/component/navbarMenu.jsp=UTF-8
-encoding//WebContent/Admin/template/component/themeSetting.jsp=UTF-8
-encoding//WebContent/Admin/template/component/welcomeName.jsp=UTF-8
-encoding//WebContent/Admin/template/index.jsp=UTF-8
-encoding//WebContent/Page/component/header/headerFirst.jsp=UTF-8
 encoding//src/web/java/dao/EmployeeDAO.java=UTF-8

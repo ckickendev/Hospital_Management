@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("users", new EmployeeDAO().getAllUser());
-		request.getRequestDispatcher("Page/web/login.jsp").forward(request, response);
+		request.getRequestDispatcher("Admin/common/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 		String encodePass = new EmployeeDAO().getEncodedString(password);
 		if (username.isEmpty() == true || password.isEmpty() == true) {
 			request.setAttribute("mess", "Username and password must not empty");
-			request.getRequestDispatcher("Page/web/login.jsp").forward(request, response);
+			request.getRequestDispatcher("Admin/common/login.jsp").forward(request, response);
 		} else {
 			if (new EmployeeDAO().login(username, encodePass) == true) {
 				Cookie userId = new Cookie("loginId",
@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect("home");
 			} else {
 				request.setAttribute("mess", "Wrong username and password, please check again");
-				request.getRequestDispatcher("Page/web/login.jsp").forward(request, response);
+				request.getRequestDispatcher("Admin/common/login.jsp").forward(request, response);
 			}
 		}
 	}

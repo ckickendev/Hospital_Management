@@ -34,7 +34,7 @@ public class PatientController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		request.setAttribute("patient", new PatientDAO().getPatients());
+		request.setAttribute("patients", new PatientDAO().getPatients());
 		request.getRequestDispatcher("Admin/UI/Patient/patients.jsp").forward(request, response);
 	}
 

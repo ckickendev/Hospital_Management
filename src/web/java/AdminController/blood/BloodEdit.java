@@ -46,6 +46,7 @@ public class BloodEdit extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		BloodBankDAO bloodBankDAO = new BloodBankDAO();
+		System.out.println(Integer.parseInt(request.getParameter("id")));
 		BloodBank bloodBank = new BloodBank(Integer.parseInt(request.getParameter("id")), request.getParameter("bbname"), request.getParameter("address"),
 				request.getParameter("phone"), request.getParameter("remain"));
 		bloodBankDAO.updateBloodBank(bloodBank);

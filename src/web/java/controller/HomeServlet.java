@@ -31,14 +31,7 @@ public class HomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-//		String start = request.getParameter("start") == null ? "0" : request.getParameter("start");
-//
-//
-//		System.out.println(start);
-
-//		System.out.println("List product" + new EventDAO().getProductInEvent(start));
-
-		request.getRequestDispatcher("/Page/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/Admin/index.jsp").forward(request, response);
 	}
 
 	/**

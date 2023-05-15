@@ -34,7 +34,7 @@ public class SignupServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 
-		request.getRequestDispatcher("Page/web/signup.jsp").forward(request, response);
+		request.getRequestDispatcher("Admin/common/signup.jsp").forward(request, response);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class SignupServlet extends HttpServlet {
 				|| request.getParameter("email").isEmpty() == true
 				|| request.getParameter("fullname").isEmpty() == true) {
 			request.setAttribute("mess", "Please fill all field");
-			request.getRequestDispatcher("Page/web/signup.jsp").forward(request, response);
+			request.getRequestDispatcher("Admin/common/signup.jsp").forward(request, response);
 			return;
 		} else {
 			if (new EmployeeDAO().getUserByUsername(request.getParameter("username")).getId() != 0) {
@@ -61,7 +61,7 @@ public class SignupServlet extends HttpServlet {
 			new EmployeeDAO().signUp(request.getParameter("username"), request.getParameter("password"),
 					request.getParameter("email"), request.getParameter("fullname"));
 			request.setAttribute("mess", "Sign up successfull");
-			request.getRequestDispatcher("Page/web/signup.jsp").forward(request, response);
+			request.getRequestDispatcher("Admin/common/signup.jsp").forward(request, response);
 		}
 
 	}
